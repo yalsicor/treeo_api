@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Containers\{{container-name}}\UI\API\Transformers;
+
+use App\Containers\{{container-name}}\Models\{{model}};
+use App\Ship\Parents\Transformers\Transformer;
+
+/**
+ * Class {{class-name}}
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends Transformer
+{
+    /**
+     * @var  array
+     */
+    protected $defaultIncludes = [
+
+    ];
+
+    /**
+     * @var  array
+     */
+    protected $availableIncludes = [
+
+    ];
+
+    /**
+     * @param {{model}} $entity
+     *
+     * @return array
+     */
+    public function transform({{model}} $entity)
+    {
+        $response = [
+{{attributes}}
+        ];
+
+        return $response;
+    }
+}

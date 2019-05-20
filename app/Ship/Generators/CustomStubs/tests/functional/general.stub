@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Containers\{{container-name}}\UI\API\Tests\Functional;
+
+use App\Containers\{{container-name}}\Tests\TestCase;
+
+/**
+ * Class {{class-name}}.
+ *
+ * @group {{_container-name}}
+ * @group general
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends TestCase
+{
+
+    /**
+     * @test
+     */
+    public function test_()
+    {
+
+    }
+
+}

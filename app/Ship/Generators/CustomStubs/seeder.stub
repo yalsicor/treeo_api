@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Data\Seeders;
+
+use App\Ship\Parents\Seeders\Seeder;
+
+/**
+ * Class {{class-name}}
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends Seeder
+{
+    public function run()
+    {
+        // ...
+    }
+}

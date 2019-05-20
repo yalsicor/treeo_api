@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Exceptions;
+
+use App\Ship\Parents\Exceptions\Exception;
+use Symfony\Component\HttpFoundation\Response;
+
+/**
+ * Class {{class-name}}
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends Exception
+{
+    public $httpStatusCode = Response::HTTP_BAD_REQUEST;
+
+    public $message = 'Exception Default Message.';
+
+    public $code = 0;
+}

@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Tasks;
+
+use App\Ship\Parents\Tasks\Task;
+
+/**
+ * Class {{class-name}}
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends Task
+{
+
+    public function __construct()
+    {
+        // ..
+    }
+
+    public function run()
+    {
+        // ..
+    }
+}

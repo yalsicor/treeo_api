@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Actions;
+
+use App\Ship\Parents\Actions\Action;
+use App\Ship\Parents\Requests\Request;
+use Apiato\Core\Foundation\Facades\Apiato;
+
+/**
+ * Class Create{{model}}Action
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class Create{{model}}Action extends Action
+{
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function run(Request $request)
+    {
+        $data = $request->sanitizeInput([
+            // add your request data here
+        ]);
+
+        ${{entity}} = Apiato::call('{{container-name}}@Create{{model}}Task', [$data]);
+
+        return ${{entity}};
+    }
+}

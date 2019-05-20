@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Jobs;
+
+use App\Ship\Parents\Jobs\Job;
+
+/**
+ * Class {{class-name}}
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends Job
+ {
+     private $recipients;
+
+     public function __construct(array $recipients)
+     {
+         $this->recipients = $recipients;
+     }
+
+     public function handle()
+     {
+         foreach ($this->recipients as $recipient) {
+             // do whatever you like
+         }
+     }
+ }

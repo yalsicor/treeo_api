@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Actions;
+
+use App\Ship\Parents\Actions\SubAction;
+use Apiato\Core\Foundation\Facades\Apiato;
+
+/**
+ * Class {{class-name}}
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends SubAction
+{
+    public function run()
+    {
+        // $var = Apiato::call('Container@Task', [$arg1, $arg2, ...]);
+    }
+}

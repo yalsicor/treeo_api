@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Tasks;
+
+use App\Containers\{{container-name}}\Data\Repositories\{{model}}Repository;
+use App\Ship\Parents\Tasks\Task;
+
+/**
+ * Class GetAll{{models}}Task
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class GetAll{{models}}Task extends Task
+{
+
+    protected $repository;
+
+    /**
+     * GetAll{{models}}Task constructor.
+     * @param {{model}}Repository $repository
+     */
+    public function __construct({{model}}Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function run()
+    {
+        return $this->repository->paginate();
+    }
+}

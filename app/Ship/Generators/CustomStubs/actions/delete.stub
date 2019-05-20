@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Actions;
+
+use App\Ship\Parents\Actions\Action;
+use App\Ship\Parents\Requests\Request;
+use Apiato\Core\Foundation\Facades\Apiato;
+
+/**
+ * Class Delete{{model}}Action
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class Delete{{model}}Action extends Action
+{
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function run(Request $request)
+    {
+        return Apiato::call('{{container-name}}@Delete{{model}}Task', [$request->id]);
+    }
+}

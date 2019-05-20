@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Containers\{{container-name}}\Tasks;
+
+use App\Containers\{{container-name}}\Data\Repositories\{{model}}Repository;
+use App\Ship\Exceptions\DeleteResourceFailedException;
+use App\Ship\Parents\Tasks\Task;
+use Exception;
+
+/**
+ * Class Delete{{model}}Task
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class Delete{{model}}Task extends Task
+{
+
+    protected $repository;
+
+    /**
+     * Delete{{model}}Task constructor.
+     * @param {{model}}Repository $repository
+     */
+    public function __construct({{model}}Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function run($id)
+    {
+        try {
+            return $this->repository->delete($id);
+        }
+        catch (Exception $exception) {
+            throw new DeleteResourceFailedException();
+        }
+    }
+}

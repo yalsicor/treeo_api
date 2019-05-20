@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Containers\{{container-name}}\UI\{{user-interface}}\Controllers;
+
+use App\Ship\Parents\Controllers\{{base-controller}};
+
+/**
+ * Class {{class-name}}
+ *
+ * @author Sebastian Weckend <sebastian.weckend@posteo.de>
+ */
+class {{class-name}} extends {{base-controller}}
+{
+
+}

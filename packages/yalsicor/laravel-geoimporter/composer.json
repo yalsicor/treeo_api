@@ -1,0 +1,44 @@
+{
+    "name": "yalsicor/laravelgeoimporter",
+    "description": ":description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "Sebastian Weckend",
+            "email": "sebastian.weckend@posteo.de",
+            "homepage": "author homepage"
+        }
+    ],
+    "homepage": "https://github.com/yalsicor/laravelgeoimporter",
+    "keywords": ["Laravel", "LaravelGeoImporter"],
+    "require": {
+        "illuminate/support": "~5",
+        "phaza/laravel-postgis": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yalsicor\\LaravelGeoImporter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yalsicor\\LaravelGeoImporter\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yalsicor\\LaravelGeoImporter\\LaravelGeoImporterServiceProvider"
+            ],
+            "aliases": {
+                "LaravelGeoImporter": "Yalsicor\\LaravelGeoImporter\\Facades\\LaravelGeoImporter"
+            }
+        }
+    }
+}
