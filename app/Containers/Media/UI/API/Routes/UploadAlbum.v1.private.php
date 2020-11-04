@@ -10,8 +10,9 @@
  * @apiVersion         1.0.0
  * @apiPermission      Manager
  *
- * @apiParam           {String}  hotspot_id (required without nursery_id)
- * @apiParam           {String}  nursery_id (required without hotspot_id)
+ * @apiParam           {String}  nursery_id (required without hotspot_id, plot_id)
+ * @apiParam           {String}  hotspot_id (required without nursery_id, plot_id)
+ * @apiParam           {String}  plot_id (required without nursery_id, hotspot_id)
  * @apiParam           {File}  album[] (required|array of images)
  *
  * @apiUse             AlbumSuccessfulMultipleResponse

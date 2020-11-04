@@ -43,6 +43,11 @@ class CreatePlotAction extends Action
             'field_coordinator_id',
         ]);
 
+
+        //web app sends empty strings
+        $data['active'] = $data['active'] ?? false;
+        $data['sample'] = $data['sample'] ?? false;
+
         //farmer
         if ($request->farmer_id) {
             $farmer = Apiato::call('Farmer@FindFarmerByIdentifierTask', [$request->farmer_id]);
@@ -68,6 +73,7 @@ class CreatePlotAction extends Action
             $plot->save();
         }
 
-        return $plot;
+        //refresh data because of database defaults for active and sample
+        return $plot->refresh();
     }
 }

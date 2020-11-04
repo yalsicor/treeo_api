@@ -114,9 +114,10 @@ class Media extends Model
      */
     public function deleteMedia()
     {
-        //delete file
-        unlink(storage_path('app/'.$this->path));
         //delete from db
-        return $this->delete();
+        $response = $this->delete();
+        //delete file
+        if (file_exists(storage_path('app/'.$this->path))) unlink(storage_path('app/'.$this->path));
+        return $response;
     }
 }

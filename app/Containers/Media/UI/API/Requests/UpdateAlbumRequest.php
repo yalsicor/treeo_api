@@ -28,9 +28,9 @@ class UpdateAlbumRequest extends Request
      * @var  array
      */
     protected $decode = [
-         'id',
-         'nursery_id',
-         'hotspot_id',
+        'id',
+        'nursery_id',
+        'hotspot_id',
     ];
 
     /**
@@ -40,8 +40,9 @@ class UpdateAlbumRequest extends Request
     {
         return [
             'id'            => 'required|exists:media',
-            'nursery_id'    => 'required_without:hotspot_id|exists:nurseries,id',
-            'hotspot_id'    => 'required_without:nursery_id|exists:hotspots,id',
+            'nursery_id'   => 'required_without_all:hotspot_id,plot_id|exists:nurseries,id',
+            'hotspot_id'   => 'required_without_all:nursery_id,plot_id|exists:hotspots,id',
+            'plot_id'      => 'required_without_all:nursery_id,hotspot_id|exists:plots,identifier',
             'caption'       => 'required|max:255',
         ];
     }

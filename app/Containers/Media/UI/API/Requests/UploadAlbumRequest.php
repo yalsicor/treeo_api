@@ -28,8 +28,8 @@ class UploadAlbumRequest extends Request
      * @var  array
      */
     protected $decode = [
-         'nursery_id',
-         'hotspot_id',
+        'nursery_id',
+        'hotspot_id',
     ];
 
     /**
@@ -38,8 +38,9 @@ class UploadAlbumRequest extends Request
     public function rules()
     {
         return [
-             'nursery_id'   => 'required_without:hotspot_id|exists:nurseries,id',
-             'hotspot_id'   => 'required_without:nursery_id|exists:hotspots,id',
+            'nursery_id'   => 'required_without_all:hotspot_id,plot_id|exists:nurseries,id',
+            'hotspot_id'   => 'required_without_all:nursery_id,plot_id|exists:hotspots,id',
+            'plot_id'      => 'required_without_all:nursery_id,hotspot_id|exists:plots,identifier',
              'album'        => 'required|array',
              'album.*'      => 'image',
         ];

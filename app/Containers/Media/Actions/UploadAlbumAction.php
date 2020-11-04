@@ -4,6 +4,7 @@ namespace App\Containers\Media\Actions;
 
 use App\Containers\Hotspot\Models\Hotspot;
 use App\Containers\Nursery\Models\Nursery;
+use App\Containers\Plot\Models\Plot;
 use App\Ship\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Parents\Requests\Request;
@@ -29,6 +30,11 @@ class UploadAlbumAction extends Action
         //nursery
         if ($request->nursery_id) {
             $entity = Nursery::with('album')->findOrFail($request->nursery_id);
+        }
+
+        //plot
+        if ($request->plot_id) {
+            $entity = Plot::with('album')->where('identifier', $request->plot_id)->first();
         }
 
         //put new elements at the end of order

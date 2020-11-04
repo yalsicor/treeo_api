@@ -14,10 +14,12 @@ use App\Containers\Plot\UI\API\Requests\GetAllPlotsRequest;
 use App\Containers\Plot\UI\API\Requests\FindPlotByIdRequest;
 use App\Containers\Plot\UI\API\Requests\GetOwnPlotsRequest;
 use App\Containers\Plot\UI\API\Requests\GetPlotMapRequest;
+use App\Containers\Plot\UI\API\Requests\GetPlotsForMapPublicRequest;
 use App\Containers\Plot\UI\API\Requests\GetPlotsForMapRequest;
 use App\Containers\Plot\UI\API\Requests\UpdatePlotRequest;
 use App\Containers\Plot\UI\API\Transformers\PlotTransformer;
 use App\Containers\Plot\UI\API\Transformers\PlotViewTransformer;
+use App\Containers\Plot\UI\API\Transformers\PlotWebMapTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
 
@@ -152,9 +154,9 @@ class Controller extends ApiController
      */
     public function generatePlotPolygon(GeneratePlotPolygonRequest $request)
     {
-        $plot = Apiato::call('Plot@GeneratePlotPolygonAction', [$request]);
+        $polygon = Apiato::call('Plot@GeneratePlotPolygonAction', [$request]);
 
-        return $this->transform($plot, PlotTransformer::class);
+        return $this->transform($polygon, PolygonTransformer::class);
     }
 
     /**
@@ -177,5 +179,25 @@ class Controller extends ApiController
         $plot = Apiato::call('Plot@DeletePlotPolygonAction', [$request]);
 
         return $this->transform($plot, PlotTransformer::class);
+    }
+
+    /**
+     * @param GetAllPlotsRequest $request
+     * @return mixed
+     */
+    public function getAllPlotsCsv(GetAllPlotsRequest $request)
+    {
+        return Apiato::call('Plot@GetAllPlotsCsvAction', [$request]);
+    }
+
+    /**
+     * @param GetPlotsForMapPublicRequest $request
+     * @return array
+     */
+    public function getPlotsForMapPublic(GetPlotsForMapPublicRequest $request)
+    {
+        $plots = Apiato::call('Plot@GetPlotsForMapPublicAction', [$request]);
+
+        return $this->transform($plots, PlotWebMapTransformer::class);
     }
 }

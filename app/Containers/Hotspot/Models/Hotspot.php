@@ -54,6 +54,23 @@ class Hotspot extends Model
     ];
 
     /**
+     * use delete event to delete subentities
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($element) {
+            //album media
+            foreach ($element->album as $media) $media->deleteMedia();
+            //point
+            optional($element->point)->delete();
+            //photo
+            optional($element->photo)->deleteMedia();
+        });
+    }
+
+    /**
      * A resource key to be used by the the JSON API Serializer responses.
      */
     protected $resourceKey = 'hotspots';

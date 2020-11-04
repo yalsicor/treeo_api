@@ -633,6 +633,31 @@ define({ "api": [
   },
   {
     "group": "Farmer",
+    "name": "getAllFarmerCsv",
+    "type": "GET",
+    "url": "/v1/farmers/csv",
+    "title": "Get all farmer as csv file",
+    "description": "<p>Get all farmer as csv file. <strong>Extended filters can be applied.</strong></p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Manager"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Farmer/UI/API/Routes/GetAllFarmerCsv.v1.private.php",
+    "groupTitle": "Farmer"
+  },
+  {
+    "group": "Farmer",
     "name": "getAllFarmers",
     "type": "GET",
     "url": "/v1/farmers",
@@ -1757,14 +1782,21 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "nursery_id",
-            "description": "<p>(required without hotspot_id)</p>"
+            "description": "<p>(required without hotspot_id, plot_id)</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "hotspot_id",
-            "description": "<p>(required without nursery_id)</p>"
+            "description": "<p>(required without nursery_id, plot_id)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "plot_id",
+            "description": "<p>(required without nursery_id, hotspot_id)</p>"
           }
         ]
       }
@@ -1802,14 +1834,21 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "nursery_id",
-            "description": "<p>(required without hotspot_id)</p>"
+            "description": "<p>(required without hotspot_id, plot_id)</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "hotspot_id",
-            "description": "<p>(required without nursery_id)</p>"
+            "description": "<p>(required without nursery_id, plot_id)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "plot_id",
+            "description": "<p>(required without nursery_id, hotspot_id)</p>"
           }
         ]
       }
@@ -1871,29 +1910,29 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "hotspot_id",
-            "description": "<p>(required without nursery_id)</p>"
+            "field": "nursery_id",
+            "description": "<p>(required without hotspot_id, plot_id)</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "nursery_id",
-            "description": "<p>(required without hotspot_id)</p>"
+            "field": "hotspot_id",
+            "description": "<p>(required without nursery_id, plot_id)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "plot_id",
+            "description": "<p>(required without nursery_id, hotspot_id)</p>"
           },
           {
             "group": "Parameter",
             "type": "Array",
             "optional": false,
             "field": "album",
-            "description": "<p>(required) if empty, album is deleted</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "album.id",
-            "description": "<p>(required)</p>"
+            "description": "<p>(required) if empty, album is deleted ({String}  album[id] (required))</p>"
           }
         ]
       }
@@ -1938,14 +1977,21 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "nursery_id",
-            "description": "<p>(required without hotspot_id)</p>"
+            "description": "<p>(required without hotspot_id, plot_id)</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "hotspot_id",
-            "description": "<p>(required without nursery_id)</p>"
+            "description": "<p>(required without nursery_id, plot_id)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "plot_id",
+            "description": "<p>(required without nursery_id, hotspot_id)</p>"
           },
           {
             "group": "Parameter",
@@ -1989,15 +2035,22 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "hotspot_id",
-            "description": "<p>(required without nursery_id)</p>"
+            "field": "nursery_id",
+            "description": "<p>(required without hotspot_id, plot_id)</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "nursery_id",
-            "description": "<p>(required without hotspot_id)</p>"
+            "field": "hotspot_id",
+            "description": "<p>(required without nursery_id, plot_id)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "plot_id",
+            "description": "<p>(required without nursery_id, hotspot_id)</p>"
           },
           {
             "group": "Parameter",
@@ -2636,7 +2689,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    // TODO: Insert the response of the request here.\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    // ...\n}",
           "type": "json"
         }
       ]
@@ -2674,7 +2727,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  // TODO: Insert the response of the request here.\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  // ...\n}",
           "type": "json"
         }
       ]
@@ -2788,7 +2841,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    // TODO: Insert the response of the request here.\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    // ...\n}",
           "type": "json"
         }
       ]
@@ -3046,7 +3099,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "geodata",
-            "description": "<p>required</p>"
+            "description": "<p>required <a href=\"https://geojson.org/\">geojson</a> object, must contain polygon or multipolygon</p>"
           }
         ]
       }
@@ -3061,7 +3114,14 @@ define({ "api": [
           "type": "json"
         }
       ]
-    }
+    },
+    "examples": [
+      {
+        "title": "geojson example:",
+        "content": "{\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n        {\n            \"type\": \"Feature\",\n            \"geometry\": {\n                \"type\": \"MultiPolygon\",\n                \"coordinates\": [[[\n                    [113.273898, -1.109575],\n                    [13.835136, 51.056488],\n                    [13.79051, 51.079899],\n                    [113.274313, -1.109084],\n                    [113.297193, -1.121087],\n                    [113.297399, -1.121276],\n                    [113.297235, -1.121637],\n                    [113.297058, -1.121725],\n                    [113.273898, -1.109575]\n                ]]]\n            }\n        }\n    ]\n}",
+        "type": "json"
+      }
+    ]
   },
   {
     "group": "Plot",
@@ -3210,7 +3270,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "geo_data",
-            "description": ""
+            "description": "<p><a href=\"https://geojson.org/\">geojson</a> object, must contain polygon or multipolygon</p>"
           }
         ]
       }
@@ -3225,7 +3285,14 @@ define({ "api": [
           "type": "json"
         }
       ]
-    }
+    },
+    "examples": [
+      {
+        "title": "geojson example:",
+        "content": "{\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n        {\n            \"type\": \"Feature\",\n            \"geometry\": {\n                \"type\": \"MultiPolygon\",\n                \"coordinates\": [[[\n                    [113.273898, -1.109575],\n                    [13.835136, 51.056488],\n                    [13.79051, 51.079899],\n                    [113.274313, -1.109084],\n                    [113.297193, -1.121087],\n                    [113.297399, -1.121276],\n                    [113.297235, -1.121637],\n                    [113.297058, -1.121725],\n                    [113.273898, -1.109575]\n                ]]]\n            }\n        }\n    ]\n}",
+        "type": "json"
+      }
+    ]
   },
   {
     "group": "Plot",
@@ -3444,6 +3511,31 @@ define({ "api": [
   },
   {
     "group": "Plot",
+    "name": "getAllPlotsCsv",
+    "type": "GET",
+    "url": "/v1/plots/csv",
+    "title": "Get all plots as csv file",
+    "description": "<p>Get all plots as csv file. <strong>Extended filters can be applied.</strong></p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Manager"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Plot/UI/API/Routes/GetAllPlotsCsv.v1.private.php",
+    "groupTitle": "Plot"
+  },
+  {
+    "group": "Plot",
     "name": "getOwnPlots",
     "type": "GET",
     "url": "/v1/plots/own",
@@ -3466,6 +3558,31 @@ define({ "api": [
         }
       ]
     }
+  },
+  {
+    "group": "Plot",
+    "name": "getPlotAlbumPublic",
+    "type": "GET",
+    "url": "/v1/public/plots/map",
+    "title": "(P) Get plots for map",
+    "description": "<p>Get plots for map.</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Plot/UI/API/Routes/GetPlotsForMap.v1.public.php",
+    "groupTitle": "Plot"
   },
   {
     "group": "Plot",
@@ -3709,7 +3826,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "geo_data",
-            "description": ""
+            "description": "<p><a href=\"https://geojson.org/\">geojson</a> object, must contain polygon or multipolygon</p>"
           }
         ]
       }
@@ -3724,7 +3841,14 @@ define({ "api": [
           "type": "json"
         }
       ]
-    }
+    },
+    "examples": [
+      {
+        "title": "geojson example:",
+        "content": "{\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n        {\n            \"type\": \"Feature\",\n            \"geometry\": {\n                \"type\": \"MultiPolygon\",\n                \"coordinates\": [[[\n                    [113.273898, -1.109575],\n                    [13.835136, 51.056488],\n                    [13.79051, 51.079899],\n                    [113.274313, -1.109084],\n                    [113.297193, -1.121087],\n                    [113.297399, -1.121276],\n                    [113.297235, -1.121637],\n                    [113.297058, -1.121725],\n                    [113.273898, -1.109575]\n                ]]]\n            }\n        }\n    ]\n}",
+        "type": "json"
+      }
+    ]
   },
   {
     "group": "Project",
@@ -4353,44 +4477,6 @@ define({ "api": [
     }
   },
   {
-    "group": "Setting",
-    "name": "getAllSettings",
-    "type": "GET",
-    "url": "/v1/settings",
-    "title": "Get All Settings",
-    "description": "<p>Get All settings for the application</p>",
-    "version": "1.0.0",
-    "permission": [
-      {
-        "name": "none"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "parameters",
-            "description": "<p>here..</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n        {\n            \"object\": \"Setting\",\n            \"id\": \"damq35egme74k0xv\",\n            \"key\": \"foo\",\n            \"value\": \"bar\"\n        },\n        {\n            \"object\": \"Setting\",\n            \"id\": \"damq35egme74k0xv\",\n            \"key\": \"test\",\n            \"value\": \"456\"\n        },\n        {\n            \"object\": \"Setting\",\n            \"id\": \"damq35egme74k0xv\",\n            \"key\": \"logout\",\n            \"value\": \"false\"\n        }\n    ],\n    \"meta\": {\n\n    }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "app/Containers/Settings/UI/API/Routes/GetAllSettings.v1.private.php",
-    "groupTitle": "Setting"
-  },
-  {
     "group": "Settings",
     "name": "createSetting",
     "type": "POST",
@@ -4464,6 +4550,44 @@ define({ "api": [
       ]
     },
     "filename": "app/Containers/Settings/UI/API/Routes/DeleteSetting.v1.private.php",
+    "groupTitle": "Settings"
+  },
+  {
+    "group": "Settings",
+    "name": "getAllSettings",
+    "type": "GET",
+    "url": "/v1/settings",
+    "title": "Get All Settings",
+    "description": "<p>Get All settings for the application</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n        {\n            \"object\": \"Setting\",\n            \"id\": \"damq35egme74k0xv\",\n            \"key\": \"foo\",\n            \"value\": \"bar\"\n        },\n        {\n            \"object\": \"Setting\",\n            \"id\": \"damq35egme74k0xv\",\n            \"key\": \"test\",\n            \"value\": \"456\"\n        },\n        {\n            \"object\": \"Setting\",\n            \"id\": \"damq35egme74k0xv\",\n            \"key\": \"logout\",\n            \"value\": \"false\"\n        }\n    ],\n    \"meta\": {\n\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Settings/UI/API/Routes/GetAllSettings.v1.private.php",
     "groupTitle": "Settings"
   },
   {
@@ -5732,6 +5856,31 @@ define({ "api": [
   },
   {
     "group": "Survey",
+    "name": "getAllSurveysCsv",
+    "type": "GET",
+    "url": "/v1/surveys/csv",
+    "title": "Get all surveys as csv file",
+    "description": "<p>Get all surveys as csv file. <strong>Extended filters can be applied.</strong></p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Manager"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Survey/UI/API/Routes/GetAllSurveysCsv.v1.private.php",
+    "groupTitle": "Survey"
+  },
+  {
+    "group": "Survey",
     "name": "getOwnSurveys",
     "type": "GET",
     "url": "/v1/surveys/own",
@@ -5951,42 +6100,49 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "dbh_cm",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "height_m",
-            "description": ""
+            "description": "<p>will be calculated, if not provided</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "health",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "comment",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "geodata",
             "description": "<p>point as geojson</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "amigo_id",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
             "type": "Integer",
-            "optional": false,
+            "optional": true,
             "field": "accuracy",
             "description": ""
           },
@@ -6160,6 +6316,31 @@ define({ "api": [
   },
   {
     "group": "Tree",
+    "name": "getAllTreesCsv",
+    "type": "GET",
+    "url": "/v1/trees/csv",
+    "title": "Get all trees as csv",
+    "description": "<p>Get all trees as csv. <strong>Extended filters can be applied.</strong></p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Manager"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Tree/UI/API/Routes/GetAllTreesCsv.v1.private.php",
+    "groupTitle": "Tree"
+  },
+  {
+    "group": "Tree",
     "name": "getOwnTrees",
     "type": "GET",
     "url": "/v1/trees/own",
@@ -6261,42 +6442,49 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "tree_data.dbh_cm",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "tree_data.height_m",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "tree_data.health",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "tree_data.comment",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "tree_data.geodata",
             "description": "<p>point as geojson</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "tree_data.amigo_id",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
             "type": "Integer",
-            "optional": false,
+            "optional": true,
             "field": "tree_data.accuracy",
             "description": ""
           },
@@ -6362,49 +6550,56 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "dbh_cm",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "height_m",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "health",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "comment",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "geodata",
             "description": "<p>point as geojson</p>"
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "amigo_id",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
             "type": "Integer",
-            "optional": false,
+            "optional": true,
             "field": "accuracy",
             "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "timestamp",
             "description": ""
           },
@@ -6571,7 +6766,7 @@ define({ "api": [
     "type": "post",
     "url": "/v1/admins",
     "title": "Create Admin type Users",
-    "description": "<p>Creating non client Users, form the Dashboard.</p>",
+    "description": "<p>Create non client users for the Dashboard.</p>",
     "version": "1.0.0",
     "permission": [
       {
@@ -6622,8 +6817,8 @@ define({ "api": [
     "name": "deleteUser",
     "type": "delete",
     "url": "/v1/users/:id",
-    "title": "Delete User (admin, client..)",
-    "description": "<p>Delete Users of any type (Admin, Client,...)</p>",
+    "title": "Delete User",
+    "description": "<p>Delete users of any type (Admin, Client...)</p>",
     "version": "1.0.0",
     "permission": [
       {
@@ -7088,99 +7283,5 @@ define({ "api": [
         }
       ]
     }
-  },
-  {
-    "group": "wepay",
-    "name": "createWepayAccount",
-    "type": "post",
-    "url": "/v1/user/payments/accounts/wepay",
-    "title": "Create wepay Account",
-    "description": "<p>Before calling this endpoint make sure to call wepay first and get the <code>customer_id</code>. You may use &quot;Wepay Checkout&quot; or &quot;wepay.js&quot; to make your Wepay call. This Information will be used to charge the User whenever he to purchase anything on the platform.</p>",
-    "version": "1.0.0",
-    "permission": [
-      {
-        "name": "Authenticated User"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "description",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "type",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "imageUrl",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "gaqDomains",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "mcc",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "country",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "currencies",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "nickname",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 202 OK\n{\n   \"message\":\"wepay account created successfully.\",\n   \"wepay_account_id\":1\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "app/Containers/Wepay/UI/API/Routes/CreateWepayAccount.v1.private.php",
-    "groupTitle": "wepay"
   }
 ] });

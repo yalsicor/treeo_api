@@ -134,4 +134,13 @@ class Controller extends ApiController
 
         return $this->transform($trees, TreeTransformer::class);
     }
+
+    /**
+     * @param GetAllTreesRequest $request
+     * @return mixed
+     */
+    public function getAllTreesCsv(GetAllTreesRequest $request)
+    {
+        return Apiato::call('Tree@GetAllTreesCsvAction', [$request]);
+    }
 }

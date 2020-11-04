@@ -57,16 +57,16 @@ class CreateSurveyView extends Migration
                         , avg(t.dbh_cm)::NUMERIC(20, 2)      AS dbh_mean
                         , avg(t.height_m)::NUMERIC(20, 2)    AS height_mean
                         , CASE
-                            WHEN s.treecount ISNULL THEN sum(t.height_m * t.dbh_cm / 100 * formfactor.value::NUMERIC)
+                            WHEN s.treecount ISNULL THEN sum(t.height_m * pi() * power(t.dbh_cm / 200, 2) * formfactor.value::NUMERIC)
                             ELSE 
                                 CASE WHEN count(t.id) = 0
                                     THEN 0
-                                    ELSE sum(t.height_m * t.dbh_cm / 100 * formfactor.value::NUMERIC) / count(t.id) * s.treecount
+                                    ELSE sum(t.height_m * pi() * power(t.dbh_cm / 200, 2) * formfactor.value::NUMERIC) / count(t.id) * s.treecount
                                 END
                             END::NUMERIC(20, 2)                     AS tree_volume
                         , CASE
                             WHEN s.treecount ISNULL 
-                                THEN sum(t.height_m * t.dbh_cm / 100 * formfactor.value::NUMERIC * 
+                                THEN sum(t.height_m * pi() * power(t.dbh_cm / 200, 2) * formfactor.value::NUMERIC * 
                                     CASE
                                         WHEN t.dbh_cm < 20 THEN idr_per_m3_20.value::NUMERIC
                                         WHEN t.dbh_cm <= 30 THEN idr_per_m3_30.value::NUMERIC
@@ -77,7 +77,7 @@ class CreateSurveyView extends Migration
                                     CASE WHEN count(t.id) = 0
                                         THEN 0
                                         ELSE 
-                                            sum(t.height_m * t.dbh_cm / 100 * formfactor.value::NUMERIC *
+                                            sum(t.height_m * pi() * power(t.dbh_cm / 200, 2) * formfactor.value::NUMERIC *
                                             CASE
                                                 WHEN t.dbh_cm::NUMERIC(20, 2) < 20 THEN idr_per_m3_20.value::NUMERIC
                                                 WHEN t.dbh_cm::NUMERIC(20, 2) <= 30 THEN idr_per_m3_30.value::NUMERIC

@@ -20,7 +20,8 @@ class CreateWebmapViews extends Migration
         DB::statement("
             CREATE OR REPLACE VIEW webmap_plot_view AS
                 SELECT
-                    p.identifier AS mu_id
+                    p.id
+                    , p.identifier AS mu_id
                     , gp.point AS point_geo
                     , f.identifier AS smallholder
                     , p.farmer_name AS sh_name
@@ -35,6 +36,7 @@ class CreateWebmapViews extends Migration
                     , p.area_m2 AS st_area_r
                     , p.latest_survey_treecount AS treecount
                     , p.supporter AS name
+                    , s.path
                     , supporter_logo.file AS logofile
                     , p.sample
                 FROM
@@ -45,7 +47,7 @@ class CreateWebmapViews extends Migration
                 LEFT JOIN media supporter_logo ON s.logo_id = supporter_logo.id
                 LEFT JOIN geo_points gp ON p.point_id = gp.id
                 WHERE
-                    p.active =TRUE AND p.project = '1mt'
+                    p.active =TRUE AND p.project IN ('ID 1mt', 'ID FSF', 'ID Research fields')
             ;
         ");
         DB::statement("
@@ -59,7 +61,7 @@ class CreateWebmapViews extends Migration
                 LEFT JOIN projects p2 on f.project_id = p2.id
                 LEFT JOIN geo_polygons gp on p.polygon_id = gp.id
                 WHERE
-                    p.active = TRUE AND p2.name = '1mt'
+                    p.active = TRUE AND p2.name IN ('ID 1mt', 'ID FSF', 'ID Research fields')
             ;
         ");
 

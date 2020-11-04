@@ -12,12 +12,13 @@
  *
  * @apiParam           {String}  survey_id required
  * @apiParam           {String}  species_id required
- * @apiParam           {String}  dbh_cm
- * @apiParam           {String}  height_m
- * @apiParam           {String}  health
- * @apiParam           {String}  comment
- * @apiParam           {String}  geodata point as geojson
- * @apiParam           {Integer}  accuracy
+ * @apiParam           {String}  [dbh_cm]
+ * @apiParam           {String}  [height_m] will be calculated, if not provided
+ * @apiParam           {String}  [health]
+ * @apiParam           {String}  [comment]
+ * @apiParam           {String}  [geodata] point as geojson
+ * @apiParam           {String}  [amigo_id]
+ * @apiParam           {Integer}  [accuracy]
  * @apiParam           {String}  timestamp
  * @apiParam           {File}    image
  *

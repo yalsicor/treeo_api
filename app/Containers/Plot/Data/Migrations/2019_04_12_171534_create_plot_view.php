@@ -106,16 +106,16 @@ class CreatePlotView extends Migration
                    , avg(t.dbh_cm) AS dbh_mean
                    , avg(t.height_m) AS height_mean
                    , CASE WHEN surveys.treecount ISNULL
-                       THEN (sum(t.height_m * t.dbh_cm / 100 * settings.value::NUMERIC))
+                       THEN (sum(t.height_m * pi() * power(t.dbh_cm / 200, 2) * settings.value::NUMERIC))
                        ELSE 
                          CASE WHEN count(t.id) = 0
                             THEN 0
-                            ELSE (sum(t.height_m * t.dbh_cm / 100 * settings.value::NUMERIC) / count(t.id) * surveys.treecount)
+                            ELSE (sum(t.height_m * pi() * power(t.dbh_cm / 200, 2) * settings.value::NUMERIC) / count(t.id) * surveys.treecount)
                          END
                      END::NUMERIC(20, 2) AS tree_volume
                    , CASE
                         WHEN surveys.treecount ISNULL
-                            THEN sum(t.height_m * t.dbh_cm / 100 * settings.value::NUMERIC *
+                            THEN sum(t.height_m * pi() * power(t.dbh_cm / 200, 2) * settings.value::NUMERIC *
                                 CASE
                                     WHEN t.dbh_cm < 20 THEN idr_per_m3_20.value::NUMERIC
                                     WHEN t.dbh_cm <= 30 THEN idr_per_m3_30.value::NUMERIC

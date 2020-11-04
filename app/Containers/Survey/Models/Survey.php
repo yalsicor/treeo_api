@@ -77,6 +77,15 @@ class Survey extends Model
         });
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('date_end', 'desc')->first();
+    }
+
     //relations
 
     /**

@@ -25,10 +25,10 @@ class ForcePlotPolygonAction extends Action
         $survey = Apiato::call('Survey@FindSurveyByIdentifierTask', [$request->survey_id]);
 
         //old survey
-        if ($survey->treecount) throw new Exception('Old survey, cannot calculate polygon from that!');
+//        if ($survey->treecount) throw new Exception('Old survey, cannot calculate polygon from that!');
 
         //less than 20 trees
-        if ($survey->trees->count() <= 20) throw new Exception('Not enough tree data. Needs to be at least 20.');
+        if ($survey->trees()->has('point')->count() <= 20) throw new Exception('Not enough tree data. Needs to be at least 20 trees with geodata.');
 
 
         $plot = $survey->plot;

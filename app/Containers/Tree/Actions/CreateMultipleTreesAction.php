@@ -57,15 +57,15 @@ class CreateMultipleTreesAction extends Action
                 //set survey
                 $data['survey_id'] = $survey->id;
 
-                $tree = Apiato::call('Tree@CreateTreeTask', [$data]);
+                $tree = Apiato::call('Tree@FindOrCreateTreeTask', [$data]);
 
                 //geodata
-                if ($geodata = ($raw['geodata'] ?? null)) {
+                if (!$tree->point && $geodata = ($raw['geodata'] ?? null)) {
                     //save point
                     $feature = LaravelGeoImporter::getFeatureFromGeoJson($geodata);
                     if ($feature->hasNoGeometry()) throw new ValidationException('No valid georeference provided', 422);
                     if ($feature->hasPoint()) {
-                        $point = Apiato::call('Geo@CreateGeoPointTask', [$feature->getPoint(), $raw['accuracy']]);
+                        $point = Apiato::call('Geo@CreateGeoPointTask', [$feature->getPoint(), $raw['accuracy'] ?? null]);
                     }
 
                     $tree->point()->associate($point);
@@ -77,8 +77,8 @@ class CreateMultipleTreesAction extends Action
         }
         catch (Exception $exception) {
             DB::rollBack();
-//            throw $exception;
-            throw new CreateResourceFailedException();
+            throw $exception;
+//            throw new CreateResourceFailedException();
         }
 
         DB::commit();

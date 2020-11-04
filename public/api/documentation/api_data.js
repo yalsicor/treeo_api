@@ -305,6 +305,31 @@ define({ "api": [
     "groupTitle": "OAuth2"
   },
   {
+    "group": "Plot",
+    "name": "getPlotAlbumPublic",
+    "type": "GET",
+    "url": "/v1/public/plots/map",
+    "title": "(P) Get plots for map",
+    "description": "<p>Get plots for map.</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Plot/UI/API/Routes/GetPlotsForMap.v1.public.php",
+    "groupTitle": "Plot"
+  },
+  {
     "group": "User",
     "name": "forgotPassword",
     "type": "POST",

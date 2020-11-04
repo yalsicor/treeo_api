@@ -46,7 +46,7 @@ class UpdateTreeRequest extends AbstractTreeRequest
             'amigo_id'   => 'nullable|max:191',
             'image'      => 'nullable|image',
             'geodata'    => '',
-            'accuracy'   => 'nullable|numeric',
+            'accuracy'   => 'nullable|integer',
         ];
     }
 

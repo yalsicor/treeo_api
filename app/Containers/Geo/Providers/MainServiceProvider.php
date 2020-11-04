@@ -21,7 +21,6 @@ class MainServiceProvider extends MainProvider
      * @var array
      */
     public $serviceProviders = [
-        DatabaseServiceProvider::class,
         LaravelGeoImporterServiceProvider::class,
     ];
 

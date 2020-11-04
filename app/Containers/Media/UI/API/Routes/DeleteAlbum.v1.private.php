@@ -11,8 +11,9 @@
  * @apiPermission      Manager
  *
  * @apiParam           {String}  id         (required)
- * @apiParam           {String}  nursery_id (required without hotspot_id)
- * @apiParam           {String}  hotspot_id (required without nursery_id)
+ * @apiParam           {String}  nursery_id (required without hotspot_id, plot_id)
+ * @apiParam           {String}  hotspot_id (required without nursery_id, plot_id)
+ * @apiParam           {String}  plot_id (required without nursery_id, hotspot_id)
  *
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 202 OK

@@ -26,13 +26,13 @@ class GeneratePlotPolygonAction extends Action
 //        if ($plot->calculated_polygon) return $plot;
 
         //survey
-        $survey = $plot->surveys()->whereNull('treecount')->latest()->get()->first();
+        $survey = $plot->surveys()->latest();
 
         //no new survey
-        if (! $survey) throw new Exception('No new surveys found.');
+        if (! $survey) throw new Exception('No surveys found.');
 
         //less than 20 trees
-        if ($survey->trees->count() < 20) throw new Exception('Survey needs at least 20 trees for plot calculation.');
+        if ($survey->trees()->has('point')->count() < 20) throw new Exception('Survey needs at least 20 trees with geodata for plot calculation.');
 
         $geometry = Apiato::call('Plot@GeneratePolygonFromSurveyTask', [$survey]);
 
@@ -49,6 +49,6 @@ class GeneratePlotPolygonAction extends Action
             $plot->save();
         }
 
-        return $plot;
+        return $plot->polygon;
     }
 }

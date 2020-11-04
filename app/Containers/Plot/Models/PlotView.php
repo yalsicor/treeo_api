@@ -2,7 +2,12 @@
 
 namespace App\Containers\Plot\Models;
 
+use App\Containers\Farmer\Models\Farmer;
+use App\Containers\Media\Models\Media;
+use App\Containers\Supporter\Models\Supporter;
 use App\Ship\Parents\Models\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * Class PlotView
@@ -60,6 +65,10 @@ class PlotView extends Model
         'nursery',
         'field_coordinator',
     ];
+    
+    public $relationships = [
+        'album',
+    ];
 
     protected $attributes = [
 
@@ -86,6 +95,18 @@ class PlotView extends Model
     protected $resourceKey = 'plotviews';
 
     //relations
+
+    /**
+     * @return MorphToMany
+     */
+    public function album()
+    {
+      return $this->morphToMany(Media::class, 'imageable')
+        ->as('album')
+        ->withPivot(['caption', 'order'])
+        ->withTimestamps()
+        ->orderBy('imageables.order');
+    }
 
     //accessors
 

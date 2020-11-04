@@ -17,6 +17,11 @@ use App\Containers\Supporter\Models\Supporter;
 use App\Containers\Survey\Models\Survey;
 use App\Containers\Village\Models\Village;
 use App\Ship\Parents\Models\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Query\Builder;
 
 /**
  * Class Plot
@@ -80,7 +85,8 @@ class Plot extends Model
     ];
 
     protected $casts = [
-
+        'active' => 'boolean',
+        'sample' => 'boolean',
     ];
 
     protected $dates = [
@@ -126,7 +132,7 @@ class Plot extends Model
     //relations
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function farmer()
     {
@@ -134,7 +140,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function polygon()
     {
@@ -142,7 +148,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function species()
     {
@@ -150,7 +156,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function soil_type()
     {
@@ -158,7 +164,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function legal_status()
     {
@@ -166,7 +172,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function village()
     {
@@ -174,7 +180,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function point()
     {
@@ -182,7 +188,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function planting_distance()
     {
@@ -190,7 +196,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function supporter()
     {
@@ -198,7 +204,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function nursery()
     {
@@ -206,7 +212,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function surveys()
     {
@@ -214,7 +220,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne|\Illuminate\Database\Query\Builder
+     * @return HasOne|Builder
      */
     public function last_survey()
     {
@@ -222,7 +228,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return MorphToMany
      */
     public function album()
     {
@@ -234,7 +240,7 @@ class Plot extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function field_coordinator()
     {

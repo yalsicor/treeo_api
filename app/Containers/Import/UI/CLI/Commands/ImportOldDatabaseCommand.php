@@ -261,7 +261,7 @@ class ImportOldDatabaseCommand extends ConsoleCommand
             $treePoint = GeoPoint::create(['point' => $oldTree->geom]);
         }
         //map tree data
-        Apiato::call('Tree@CreateTreeTask', [[
+        Apiato::call('Tree@FindOrCreateTreeTask', [[
             'survey_id'     => $survey->id,
             'species_id'    => ($oldTree->speciesR)?
                 Species::where('name', ($oldTree->speciesR->species_name))->first()->id

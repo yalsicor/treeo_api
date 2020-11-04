@@ -11,9 +11,10 @@
  * @apiPermission      Manager or Owner
  *
  * @apiParam           {String}  id required
- * @apiParam           {String}  geodata required
+ * @apiParam           {String}  geodata required <a href="https://geojson.org/">geojson</a> object, must contain polygon or multipolygon
  *
  * @apiUse             PlotSuccessSingleResponse
+ * @apiUse             GeoJsonExample
  */
 
 /** @var Route $router */

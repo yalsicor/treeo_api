@@ -53,6 +53,27 @@ class Nursery extends Model
      */
     protected $resourceKey = 'nurseries';
 
+    /**
+     * use delete event to delete subentities
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($element) {
+            //surveys
+            foreach ($element->surveys as $survey) {
+                $survey->delete();
+            }
+            //album media
+            foreach ($element->album as $media) $media->deleteMedia();
+            //polygon
+            optional($element->polygon)->delete();
+            //point
+            optional($element->point)->delete();
+        });
+    }
+
     //relations
 
     /**

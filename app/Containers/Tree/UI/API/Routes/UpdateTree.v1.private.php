@@ -13,13 +13,14 @@
  * @apiParam           {String}  id required
  * @apiParam           {String}  survey_id required
  * @apiParam           {String}  species_id required
- * @apiParam           {String}  dbh_cm
- * @apiParam           {String}  height_m
- * @apiParam           {String}  health
- * @apiParam           {String}  comment
- * @apiParam           {String}  geodata point as geojson
- * @apiParam           {Integer}  accuracy
- * @apiParam           {String}  timestamp
+ * @apiParam           {String}  [dbh_cm]
+ * @apiParam           {String}  [height_m]
+ * @apiParam           {String}  [health]
+ * @apiParam           {String}  [comment]
+ * @apiParam           {String}  [geodata] point as geojson
+ * @apiParam           {String}  [amigo_id]
+ * @apiParam           {Integer}  [accuracy]
+ * @apiParam           {String}  [timestamp]
  * @apiParam           {File}    image
  *
  * @apiUse             TreeSuccessfulSingleResponse

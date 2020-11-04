@@ -29,6 +29,7 @@ class CreateTreeView extends Migration
                 , projects.name AS project_name
                 , t.dbh_cm
                 , t.height_m
+                , (t.height_m * pi() * power(t.dbh_cm / 200, 2) * settings.value::NUMERIC)::NUMERIC(20, 2) AS tree_volume
                 , t.height_calculated
                 , t.health
                 , t.comment

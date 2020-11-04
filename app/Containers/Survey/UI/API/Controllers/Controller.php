@@ -120,4 +120,13 @@ class Controller extends ApiController
     {
         return Apiato::call('Survey@GetSurveyMapAction', [$request]);
     }
+
+    /**
+     * @param GetAllSurveysRequest $request
+     * @return mixed
+     */
+    public function getAllSurveysCsv(GetAllSurveysRequest $request)
+    {
+        return Apiato::call('Survey@GetAllSurveysCsvAction', [$request]);
+    }
 }

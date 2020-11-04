@@ -29,9 +29,10 @@
  * @apiParam           {Bool}    active
  * @apiParam           {Bool}    sample
  * @apiParam           {Int}     plants_planted
- * @apiParam           {String}  geo_data
+ * @apiParam           {String}  geo_data <a href="https://geojson.org/">geojson</a> object, must contain polygon or multipolygon
  *
  * @apiUse             PlotSuccessSingleResponse
+ * @apiUse             GeoJsonExample
  */
 
 /** @var Route $router */

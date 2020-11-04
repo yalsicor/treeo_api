@@ -19,6 +19,9 @@ use App\Containers\Farmer\UI\API\Transformers\GenderTransformer;
 use App\Containers\Media\UI\API\Transformers\MediaTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
+use Carbon\Carbon;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class Controller
@@ -148,5 +151,14 @@ class Controller extends ApiController
         $farmer = Apiato::call('Farmer@RegisterFarmerAction', [$request]);
 
         return $this->transform($farmer, FarmerProfileTransformer::class);
+    }
+
+    /**
+     * @param GetAllFarmersRequest $request
+     * @return mixed
+     */
+    public function getAllFarmersCsv(GetAllFarmersRequest $request)
+    {
+        return Apiato::call('Farmer@GetAllFarmersCsvAction', [$request]);
     }
 }

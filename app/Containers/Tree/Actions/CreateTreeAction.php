@@ -33,13 +33,15 @@ class CreateTreeAction extends Action
             'amigo_id',
         ]);
 
+
         //timestamp
         if ($request->timestamp) {
             $data['timestamp'] = new Carbon($request->timestamp);
         }
 
+        $data['height_calculated'] = false;
         //height_m
-        if (!$request->height_m) {
+        if (is_null($request->height_m)) {
             $data['height_m'] = (new Tree())->estimateHeight($request->dbh_cm);
             $data['height_calculated'] = true;
         }
@@ -50,13 +52,13 @@ class CreateTreeAction extends Action
             if ($survey) $data['survey_id'] = $survey->id;
         }
 
-        $tree = Apiato::call('Tree@CreateTreeTask', [$data]);
+        $tree = Apiato::call('Tree@FindOrCreateTreeTask', [$data]);
 
         //image
         Apiato::call('Tree@UpdateImageTask', [$request->image, $tree]);
 
         //geodata
-        if ($geodata = $request->geodata) {
+        if (!$tree->point && $geodata = $request->geodata) {
             //save point
             $feature = LaravelGeoImporter::getFeatureFromGeoJson($geodata);
             if ($feature->hasNoGeometry()) throw new ValidationException('No valid georeference provided', 422);

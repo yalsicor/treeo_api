@@ -38,6 +38,7 @@ class CreatePlotTask extends Task
             return $this->repository->create($data);
         }
         catch (Exception $exception) {
+//            throw $exception;
             throw new CreateResourceFailedException();
         }
     }

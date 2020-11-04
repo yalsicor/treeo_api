@@ -73,7 +73,7 @@ class CreateMultipleTreesRequest extends Request
             'tree_data.*.comment'    => 'nullable|max:191',
             'tree_data.*.timestamp'  => 'nullable|date',
             'tree_data.*.geodata'    => '',
-            'tree_data.*.accuracy'   => 'nullable|numeric',
+            'tree_data.*.accuracy'   => 'nullable|integer',
         ];
     }
 }

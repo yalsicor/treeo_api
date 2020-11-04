@@ -35,7 +35,7 @@ class DeleteMediaTask extends Task
         try {
             //delete file
             $media = $this->repository->find($id);
-            unlink(storage_path('app/'.$media->path));
+            if (file_exists(storage_path('app/'.$media->path))) unlink(storage_path('app/'.$media->path));
             //delete db entry
             return $this->repository->delete($id);
         }
